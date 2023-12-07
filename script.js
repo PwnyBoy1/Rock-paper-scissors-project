@@ -6,12 +6,11 @@
 let compChoice;
 
 function getComputerChoice(){
-    compChoice = Math.floor(Math.random()* 3);
-    console.log(compChoice);
-    if (compChoice === 0){
+    compChoice = Math.floor(Math.random()* 3 + 1);
+    if (compChoice === 1){
         compChoice = "Scissors"
     }
-    else if (compChoice === 1){
+    else if (compChoice === 2){
         compChoice = "Rock"
     }
     else {
@@ -19,4 +18,3 @@ function getComputerChoice(){
     }
     console.log(compChoice);
 }
-getComputerChoice()
