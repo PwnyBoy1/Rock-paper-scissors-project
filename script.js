@@ -53,13 +53,17 @@ function game() {
 
         // Handle ties and replay rounds
         while (result.includes("tie")) {
-            console.log("It's a tie! Play again.");
             playerSelection = prompt("Choose: Rock, Paper, or Scissors").toLowerCase();
             computerSelection = getComputerChoice(); 
             result = playRound(playerSelection, computerSelection);
             console.log(`Round ${round}: ${result}`);
         }
-        
+        while (result.includes("valid")) {
+            playerSelection = prompt("Choose: Rock, Paper, or Scissors").toLowerCase();
+            computerSelection = getComputerChoice(); 
+            result = playRound(playerSelection, computerSelection);
+            console.log(`Round ${round}: ${result}`);
+        }
         // Update scores
         if (result.includes("win")) {
             playerScore++;
