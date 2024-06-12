@@ -64,12 +64,15 @@ function game() {
             result = playRound(playerSelection, computerSelection);
             console.log(`Round ${round}: ${result}`);
         }
+
         // Update scores
         if (result.includes("win")) {
             playerScore++;
         } else if (result.includes("lose")) {
             computerScore++;
         }
+        
+       
     }
 
     // Determine the winner of the game
@@ -78,7 +81,7 @@ function game() {
     } else if (playerScore < computerScore) {
         console.log(`You lose the game! Final score: ${playerScore} - ${computerScore}`);
     } else {
-        console.log("It's a tie game!");
+        console.log(`It's a tie game! ${playerScore} - ${computerScore}`);
     }
 }
 
