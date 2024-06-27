@@ -18,11 +18,8 @@ function getComputerChoice(){
 // then it checks if the player wins.
 // finally computer wins if the firsts conditions aren't met
 
-function playRound(playerSelection,computerSelection){
-    playerSelection = playerSelection.toLowerCase();
-    if (!["rock","paper", "scissors"].includes(playerSelection)){
-    return "Please make valid selection. Choose rock, paper, or scissors.";  
-}
+function playRound(playerSelection, computerSelection){
+    computerSelection = getComputerChoice();
     if (playerSelection === computerSelection){
         return `It's a tie! Both chose ${playerSelection}. Play again.`;
     }
@@ -37,10 +34,32 @@ function playRound(playerSelection,computerSelection){
     }
 }
 
+//select button elements for player choices
+
+const rockButton = document.querySelector("#rock");
+const paperButton = document.querySelector("#paper");
+const scissorsButton = document.querySelector("#scissors");
+
+//add event listeners for each of the button choices. 
+//When player selects an option, 1 round is played
+
+rockButton.addEventListener("click", () => {
+    const result = playRound("rock", getComputerChoice());
+    console.log(result);
+})
+paperButton.addEventListener("click", () => {
+    const result = playRound("paper", getComputerChoice());
+    console.log(result);
+})
+
+scissorsButton.addEventListener("click", () => {
+    const result = playRound("scissors", getComputerChoice());
+    console.log(result);
+})
 //function game() keeps 2 scores and what round it is
 //loops the playRound 5 times
 //accounts for ties 
-function game() {
+/* function game() {
     let playerScore = 0;
     let computerScore = 0;
 
@@ -86,3 +105,4 @@ function game() {
 }
 
 game();
+*/
