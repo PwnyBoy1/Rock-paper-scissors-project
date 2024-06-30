@@ -20,6 +20,7 @@ function getComputerChoice(){
 
 function playRound(playerSelection, computerSelection){
     computerSelection = getComputerChoice();
+    gameResults();
     if (playerSelection === computerSelection){
         return `It's a tie! Both chose ${playerSelection}. Play again.`;
     }
@@ -28,8 +29,10 @@ function playRound(playerSelection, computerSelection){
         (playerSelection === "paper" && computerSelection === "rock") ||
         (playerSelection === "scissors" && computerSelection === "paper") 
     ){
+        userScore++
         return `You win! ${playerSelection} beats ${computerSelection}!`;
     } else{
+        computerScore++
         return `You lose! ${computerSelection} beats ${playerSelection}!`
     }
 }
@@ -45,16 +48,16 @@ const scissorsButton = document.querySelector("#scissors");
 
 rockButton.addEventListener("click", () => {
     const result = playRound("rock", getComputerChoice());
-    resultsViewer.textContent = `${result}`;
+    resultsViewer.textContent = `${result}. User:${userScore} vs Computer: ${computerScore} ${winner}`;
 })
 paperButton.addEventListener("click", () => {
     const result = playRound("paper", getComputerChoice());
-    resultsViewer.textContent = `${result}`;
+    resultsViewer.textContent = `${result}. User:${userScore} vs Computer: ${computerScore} ${winner}`;
 })
 
 scissorsButton.addEventListener("click", () => {
     const result = playRound("scissors", getComputerChoice());
-    resultsViewer.textContent = `${result}`;
+    resultsViewer.textContent = `${result}. User:${userScore} vs Computer: ${computerScore} ${winner}`;
 })
 
 
@@ -65,8 +68,20 @@ const resultsContainer = document.querySelector(".result")
 
 resultsContainer.appendChild(resultsViewer)
 
+let computerScore = 0;
+let userScore = 0;
 
-
+function gameResults() {
+    if (computerScore >= 5){
+        winner = "Game over. Computer wins!"
+    }
+    else if (userScore >= 5){
+        winner = "Game over. You win!"
+    }
+    else{
+        winner = "";
+    }
+}
 
 //function game() keeps 2 scores and what round it is
 //loops the playRound 5 times
