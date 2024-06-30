@@ -45,17 +45,29 @@ const scissorsButton = document.querySelector("#scissors");
 
 rockButton.addEventListener("click", () => {
     const result = playRound("rock", getComputerChoice());
-    console.log(result);
+    resultsViewer.textContent = `${result}`;
 })
 paperButton.addEventListener("click", () => {
     const result = playRound("paper", getComputerChoice());
-    console.log(result);
+    resultsViewer.textContent = `${result}`;
 })
 
 scissorsButton.addEventListener("click", () => {
     const result = playRound("scissors", getComputerChoice());
-    console.log(result);
+    resultsViewer.textContent = `${result}`;
 })
+
+
+
+
+const resultsViewer = document.createElement("p");
+const resultsContainer = document.querySelector(".result")
+
+resultsContainer.appendChild(resultsViewer)
+
+
+
+
 //function game() keeps 2 scores and what round it is
 //loops the playRound 5 times
 //accounts for ties 
