@@ -20,8 +20,9 @@ function getComputerChoice(){
 
 function playRound(playerSelection, computerSelection){
     computerSelection = getComputerChoice();
-    gameResults();
+    
     if (playerSelection === computerSelection){
+        gameResults()
         return `It's a tie! Both chose ${playerSelection}. Play again.`;
     }
     else if (
@@ -30,9 +31,11 @@ function playRound(playerSelection, computerSelection){
         (playerSelection === "scissors" && computerSelection === "paper") 
     ){
         userScore++
+        gameResults();
         return `You win! ${playerSelection} beats ${computerSelection}!`;
     } else{
         computerScore++
+        gameResults();
         return `You lose! ${computerSelection} beats ${playerSelection}!`
     }
 }
