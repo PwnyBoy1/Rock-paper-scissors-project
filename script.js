@@ -1,5 +1,7 @@
 //Rock Paper Scissors Game
 const computerChoice = getComputerChoice();
+let computerScore = 0;
+let userScore = 0;
 
 //This function takes in user input and makes it lowercase
 
@@ -20,8 +22,9 @@ function getComputerChoice(){
 
 function playRound(playerSelection, computerSelection){
     computerSelection = getComputerChoice();
-    
+
     if (playerSelection === computerSelection){
+        
         gameResults()
         return `It's a tie! Both chose ${playerSelection}. Play again.`;
     }
@@ -31,13 +34,16 @@ function playRound(playerSelection, computerSelection){
         (playerSelection === "scissors" && computerSelection === "paper") 
     ){
         userScore++
+        gameOver()
         gameResults();
         return `You win! ${playerSelection} beats ${computerSelection}!`;
     } else{
         computerScore++
+        gameOver()
         gameResults();
         return `You lose! ${computerSelection} beats ${playerSelection}!`
     }
+
 }
 
 //select button elements for player choices
@@ -46,33 +52,35 @@ const rockButton = document.querySelector("#rock");
 const paperButton = document.querySelector("#paper");
 const scissorsButton = document.querySelector("#scissors");
 
+
 //add event listeners for each of the button choices. 
 //When player selects an option, 1 round is played
 
 rockButton.addEventListener("click", () => {
     const result = playRound("rock", getComputerChoice());
     resultsViewer.textContent = `${result}. User:${userScore} vs Computer: ${computerScore} ${winner}`;
-})
+});
 paperButton.addEventListener("click", () => {
     const result = playRound("paper", getComputerChoice());
     resultsViewer.textContent = `${result}. User:${userScore} vs Computer: ${computerScore} ${winner}`;
-})
+});
 
 scissorsButton.addEventListener("click", () => {
     const result = playRound("scissors", getComputerChoice());
     resultsViewer.textContent = `${result}. User:${userScore} vs Computer: ${computerScore} ${winner}`;
-})
+});
 
 
-
-
+const popup = document.querySelector(".popup-container");
+const Choices = document.querySelector(".container");
 const resultsViewer = document.createElement("p");
 const resultsContainer = document.querySelector(".result")
-
+const popupResults = popup.firstElementChild;
 resultsContainer.appendChild(resultsViewer)
 
-let computerScore = 0;
-let userScore = 0;
+
+
+
 
 function gameResults() {
     if (computerScore >= 5){
@@ -85,6 +93,35 @@ function gameResults() {
         winner = "";
     }
 }
+const finalScore = document.createElement("p");
+popup.insertBefore(finalScore, popup.childNodes[2]);
+function gameOver(){
+    gameResults()
+    if (computerScore === 5 || userScore === 5){
+
+        resultsContainer.classList.add("hide-elements");
+        Choices.classList.add("hide-elements");
+        popup.classList.add("open-popup");
+        popupResults.textContent = `${winner}`
+        finalScore.textContent = `Final Score: User: ${userScore} vs Computer: ${computerScore} `;
+        const jsConfetti = new JSConfetti()
+        jsConfetti.addConfetti({
+            emojis: [ '👊', '✋', '✌️'],
+         })
+        
+    }
+
+}
+const playAgain = document.querySelector("#playagain");
+playAgain.addEventListener("click", () => {
+    computerScore = 0;
+    userScore = 0;
+    resultsContainer.classList.remove("hide-elements");
+    Choices.classList.remove("hide-elements");
+    popup.classList.remove("open-popup");
+    resultsViewer.textContent = "GG";
+    popupResults.textContent = "";
+});
 
 //function game() keeps 2 scores and what round it is
 //loops the playRound 5 times
