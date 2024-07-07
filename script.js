@@ -58,25 +58,31 @@ const scissorsButton = document.querySelector("#scissors");
 
 rockButton.addEventListener("click", () => {
     const result = playRound("rock", getComputerChoice());
-    resultsViewer.textContent = `${result}. User:${userScore} vs Computer: ${computerScore} ${winner}`;
+    resultsViewer.textContent = `${result}`;
+    runningScore.textContent = `User:${userScore} vs Computer: ${computerScore} ${winner}`
 });
 paperButton.addEventListener("click", () => {
     const result = playRound("paper", getComputerChoice());
-    resultsViewer.textContent = `${result}. User:${userScore} vs Computer: ${computerScore} ${winner}`;
+    resultsViewer.textContent = `${result}`;
+    runningScore.textContent = `User:${userScore} vs Computer: ${computerScore} ${winner}`
 });
 
 scissorsButton.addEventListener("click", () => {
     const result = playRound("scissors", getComputerChoice());
-    resultsViewer.textContent = `${result}. User:${userScore} vs Computer: ${computerScore} ${winner}`;
+    resultsViewer.textContent = `${result}`;
+    runningScore.textContent = `User:${userScore} vs Computer: ${computerScore} ${winner}`
 });
 
 
 const popup = document.querySelector(".popup-container");
 const Choices = document.querySelector(".container");
 const resultsViewer = document.createElement("p");
+const runningScore = document.createElement("p");
 const resultsContainer = document.querySelector(".result")
 const popupResults = popup.firstElementChild;
-resultsContainer.appendChild(resultsViewer)
+const background = document.querySelector("body");
+resultsContainer.appendChild(resultsViewer);
+resultsContainer.appendChild(runningScore);
 
 
 
@@ -110,17 +116,28 @@ function gameOver(){
          })
         
     }
-
+    if(computerScore === 5){
+        background.style.background = "rgb(237, 57, 72)"
+        background.style.transition = "background-color 0.4s ease"
+    }
 }
+
+
+
 const playAgain = document.querySelector("#playagain");
+
 playAgain.addEventListener("click", () => {
+    const confettiCanvas = document.querySelector("canvas");
     computerScore = 0;
     userScore = 0;
     resultsContainer.classList.remove("hide-elements");
     Choices.classList.remove("hide-elements");
     popup.classList.remove("open-popup");
-    resultsViewer.textContent = "GG";
+    resultsViewer.textContent = "";
     popupResults.textContent = "";
+    runningScore.textContent = "";
+    background.style.removeProperty("background");
+    confettiCanvas.remove();
 });
 
 //function game() keeps 2 scores and what round it is
