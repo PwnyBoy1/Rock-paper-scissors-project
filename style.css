@@ -2,7 +2,8 @@ body {
     background-color: rgb(169, 146, 233);
     width: 100%;
     height: 100vh;
-   
+    
+}
 .container{
     display: flex;
     justify-content: center;
@@ -83,4 +84,12 @@ body {
     padding: 15px;
     border-radius: 5px;
     font-size: larger;
+}
+.game-visual-container{
+    border: 1px, solid, black;
+    width: 40vh;
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }

@@ -75,7 +75,7 @@ scissorsButton.addEventListener("click", () => {
 
 
 const popup = document.querySelector(".popup-container");
-const Choices = document.querySelector(".container");
+const choices = document.querySelector(".container");
 const resultsViewer = document.createElement("p");
 const runningScore = document.createElement("p");
 const resultsContainer = document.querySelector(".result")
@@ -83,7 +83,6 @@ const popupResults = popup.firstElementChild;
 const background = document.querySelector("body");
 resultsContainer.appendChild(resultsViewer);
 resultsContainer.appendChild(runningScore);
-
 
 
 
@@ -106,7 +105,7 @@ function gameOver(){
     if (computerScore === 5 || userScore === 5){
 
         resultsContainer.classList.add("hide-elements");
-        Choices.classList.add("hide-elements");
+        choices.classList.add("hide-elements");
         popup.classList.add("open-popup");
         popupResults.textContent = `${winner}`
         finalScore.textContent = `Final Score: User: ${userScore} vs Computer: ${computerScore} `;
@@ -131,7 +130,7 @@ playAgain.addEventListener("click", () => {
     computerScore = 0;
     userScore = 0;
     resultsContainer.classList.remove("hide-elements");
-    Choices.classList.remove("hide-elements");
+    choices.classList.remove("hide-elements");
     popup.classList.remove("open-popup");
     resultsViewer.textContent = "";
     popupResults.textContent = "";
